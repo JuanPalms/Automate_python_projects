@@ -1,0 +1,20 @@
+name: automate_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python = 3.10.9
+  - pip
+  - pyyaml
+  - numpy
+  - pandas
+  - matplotlib
+  - beautifulsoup4
+  - streamlit
+  - lxml
+  - requests
+  - jupyterlab
+  - plotly
+  - seaborn
+  - scikit-learn
+  - selenium
