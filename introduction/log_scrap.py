@@ -8,6 +8,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 import time
 from outils import load_config
+import schedule
 
 config_f = load_config('config.yaml')
 url = "http://automated.pythonanywhere.com/login/"
@@ -55,7 +56,6 @@ def main():
     time.sleep(2)
     driver.find_element(by = "xpath", value = "/html/body/nav/div/a" ).click()
     time.sleep(2)
-    print(clean_text(driver.find_element(by = "id", value = "displaytimer").text))
     # writting the scrapped text to a text file
     # If conditional checks for preexisting file otherwise creates the file for storing data
     if os.path.isfile('scrapped_time.txt')== True:
@@ -69,12 +69,12 @@ def main():
         with open('scrapped_time.txt', 'a') as appending_text_file:
             appending_text_file.write(str(clean_text(driver.find_element(by = "id", value = "displaytimer").text)))
             appending_text_file.close()   
-        print("Empty File Created Successfully in conditional and added scrapped element")
+        print("Scrapping file created successfully and added first scrapped element")
 
-main()
-
-
-
+schedule.every(10).seconds.do(main)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
 
 
 
