@@ -9,6 +9,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 from outils import load_config
 import schedule
+from datetime import datetime
 
 config_f = load_config('config.yaml')
 url = "http://automated.pythonanywhere.com/login/"
@@ -56,24 +57,33 @@ def main():
     time.sleep(2)
     driver.find_element(by = "xpath", value = "/html/body/nav/div/a" ).click()
     time.sleep(2)
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
     # writting the scrapped text to a text file
     # If conditional checks for preexisting file otherwise creates the file for storing data
     if os.path.isfile('scrapped_time.txt')== True:
         with open('scrapped_time.txt', 'a') as appending_text_file:
             appending_text_file.write("\n")
             appending_text_file.write(str(clean_text(driver.find_element(by = "id", value = "displaytimer").text)))
+            appending_text_file.write(',')
+            appending_text_file.write(current_time)
             appending_text_file.close()
     else :
         with open('scrapped_time.txt', 'w') as creating_new_txt_file: 
             pass
         with open('scrapped_time.txt', 'a') as appending_text_file:
+            appending_text_file.write("value,date")
+            appending_text_file.write("\n")
             appending_text_file.write(str(clean_text(driver.find_element(by = "id", value = "displaytimer").text)))
+            appending_text_file.write(',')
+            appending_text_file.write(current_time)
             appending_text_file.close()   
         print("Scrapping file created successfully and added first scrapped element")
-
+# initialize the main process every 10 seconds
 schedule.every(10).seconds.do(main)
 while True:
     schedule.run_pending()
+    #after completition sleeps for 1 second
     time.sleep(1)
 
 
