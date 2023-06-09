@@ -42,6 +42,11 @@ def clean_text(element):
     return numerical
 
 def main():
+    """
+    This function executes the main part of this module it signs in into the the
+    web page by sending an username and password and thenb scrappes a dinamic value
+    from the web page and stores it in a text file.
+    """
     driver = get_driver(url)
     time.sleep(2)
     driver.find_element(by = "id",value = "id_username").send_keys("automated")
@@ -51,6 +56,26 @@ def main():
     driver.find_element(by = "xpath", value = "/html/body/nav/div/a" ).click()
     time.sleep(2)
     print(clean_text(driver.find_element(by = "id", value = "displaytimer").text))
+    # writting the scrapped text to a text file
+    # If conditional checks for preexisting file otherwise creates the file for storing data
+    if os.path.isfile('scrapped_time.txt')== True:
+        with open('scrapped_time.txt', 'a') as appending_text_file:
+            appending_text_file.write("\n")
+            appending_text_file.write(str(clean_text(driver.find_element(by = "id", value = "displaytimer").text)))
+            appending_text_file.close()
+    else :
+        with open('scrapped_time.txt', 'w') as creating_new_txt_file: 
+            pass
+        with open('scrapped_time.txt', 'a') as appending_text_file:
+            appending_text_file.write(str(clean_text(driver.find_element(by = "id", value = "displaytimer").text)))
+            appending_text_file.close()   
+        print("Empty File Created Successfully in conditional and added scrapped element")
 
 main()
-    
+
+
+
+
+
+
+
