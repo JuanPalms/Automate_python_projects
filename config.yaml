@@ -1,3 +1,4 @@
 # Driver configuration
 driver_folder: '/home/juanpalms/bin/.chromedriver/chromedriver_linux64'
 api_key: '232083e9c72441509c717046236f8a6b'
+api_key_weather: '9f1ba315a94c520b7d97475b1e25f7b1'
