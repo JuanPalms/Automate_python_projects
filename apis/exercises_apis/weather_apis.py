@@ -14,7 +14,7 @@ from outils import load_config
 
 config_f = load_config("config.yaml")
 
-r = requests.get(f'api.openweathermap.org/data/2.5/forecast?q=München,DE&appid={config_f["api_key_weather"]}')
+r = requests.get(f'https://api.openweathermap.org/data/2.5/forecast?q=München,DE&appid={config_f["api_key_weather"]}&units=metric')
 content = r.json()
 
-print(content)
+print(content[0])
