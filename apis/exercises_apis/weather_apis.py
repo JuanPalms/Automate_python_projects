@@ -6,6 +6,7 @@ import os
 import sys
 import requests
 import pandas as pd
+import argparse
 
 # Add the parent directory to sys.path
 current_dir = os.getcwd()
@@ -15,6 +16,11 @@ from outils import load_config
 
 config_f = load_config("config.yaml")
 
+parser = argparse.ArgumentParser()
+parser.add_argument('city')
+parser.add_argument('country_code')
+
+args = parser.parse_args()
 
 def create_weather_db(city, country_code):
     """
@@ -38,4 +44,4 @@ def create_weather_db(city, country_code):
     weather_df=pd.DataFrame(data, columns=["City","Time","Temperature","Condition"])
     return weather_df
 
-create_weather_db('Ciudad de Mexico', 'MEX').to_csv("weather_mx.csv")
+create_weather_db(args.city, args.country_code).to_csv(f"weather_{args.city}_{args.country_code}.csv")
