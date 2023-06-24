@@ -18,7 +18,8 @@ def get_currency_rate(in_cur, out_cur):
     soup = BeautifulSoup(page.content, "html.parser")
     rate = soup.find(id="content").find("div", class_="ccOutputBx").find("span",class_="ccOutputRslt")
     rate = rate.text
-    rate = rate.split(" ")[0]
-    print(rate)
-
-get_currency_rate(args.in_cur,args.out_cur)
+    rate = float(rate.split(" ")[0])
+    return rate
+    
+current_rate = get_currency_rate(args.in_cur,args.out_cur)
+print(current_rate)
