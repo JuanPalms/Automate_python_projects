@@ -19,3 +19,4 @@ dependencies:
   - scikit-learn
   - selenium
   - schedule
+  - flask
