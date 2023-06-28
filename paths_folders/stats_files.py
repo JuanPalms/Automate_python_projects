@@ -3,8 +3,14 @@ This python module implements names modification of files based on creation time
 """
 from pathlib import Path
 from datetime import datetime
+import argparse
 
-root_dir = Path("files2")
+parser = argparse.ArgumentParser()
+parser.add_argument('root_directory')
+
+args = parser.parse_args()
+    
+root_dir = Path(args.root_directory)
 file_paths = root_dir.glob("**/*")
 
 for path in file_paths:
