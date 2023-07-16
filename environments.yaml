@@ -24,3 +24,6 @@ dependencies:
   - premailer
   - fpdf
   - openpyxl
+  - tabula-py
+  - pip:
+    - pymupdf
