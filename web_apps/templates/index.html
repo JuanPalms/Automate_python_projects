@@ -1,17 +1,17 @@
 <div>
     <h1>Volume Calculator</h1>
     <p>Calculate the volume of a cylinder</p>
-    <form>
+    <form form method='POST'>
         <div>
-            <input></input>
+            <input value='{{dim_1}}' name='first_dim'> </input>
         </div>
         <div>
-            <input></input>
+            <input value='{{dim_2}}' name='second_dim'> </input>
         </div>
         <div>
-            <input></input>
+            <input  value= '{{dim_3}}' name='third_dim'></input>
         </div>
-        <p></p>
+        <p>{{output}}</p>
         <button>Calculate</button>
 
     </form>
