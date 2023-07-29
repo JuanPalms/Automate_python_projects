@@ -27,3 +27,4 @@ dependencies:
   - tabula-py
   - pip:
     - pymupdf
+  - gspread
