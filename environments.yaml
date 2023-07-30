@@ -28,3 +28,4 @@ dependencies:
   - pip:
     - pymupdf
   - gspread
+  - opencv
